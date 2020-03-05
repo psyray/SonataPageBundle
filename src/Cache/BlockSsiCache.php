@@ -60,7 +60,7 @@ class BlockSsiCache extends SsiCache
         $this->contextManager = $contextManager;
     }
 
-    public function get(array $keys)
+    public function get(array $keys): CacheElement
     {
         $this->validateKeys($keys);
 
@@ -71,7 +71,7 @@ class BlockSsiCache extends SsiCache
         return new CacheElement($keys, new Response($content));
     }
 
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElement
     {
         $this->validateKeys($keys);
 

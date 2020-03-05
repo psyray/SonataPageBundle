@@ -68,29 +68,29 @@ class BlockJsCache implements CacheAdapterInterface
         $this->contextManager = $contextManager;
     }
 
-    public function flushAll()
+    public function flushAll(): bool
     {
         return true;
     }
 
-    public function flush(array $keys = [])
+    public function flush(array $keys = []): bool
     {
         return true;
     }
 
-    public function has(array $keys)
+    public function has(array $keys): bool
     {
         return true;
     }
 
-    public function get(array $keys)
+    public function get(array $keys): CacheElement
     {
         $this->validateKeys($keys);
 
         return new CacheElement($keys, new Response($this->sync ? $this->getSync($keys) : $this->getAsync($keys)));
     }
 
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElement
     {
         $this->validateKeys($keys);
 
@@ -147,7 +147,7 @@ class BlockJsCache implements CacheAdapterInterface
         return $response;
     }
 
-    public function isContextual()
+    public function isContextual(): bool
     {
         return false;
     }

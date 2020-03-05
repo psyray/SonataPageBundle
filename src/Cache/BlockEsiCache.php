@@ -73,7 +73,7 @@ class BlockEsiCache extends VarnishCache
         $this->recorder = $recorder;
     }
 
-    public function get(array $keys)
+    public function get(array $keys): CacheElement
     {
         $this->validateKeys($keys);
 
@@ -84,7 +84,7 @@ class BlockEsiCache extends VarnishCache
         return new CacheElement($keys, new Response($content));
     }
 
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElement
     {
         $this->validateKeys($keys);
 
