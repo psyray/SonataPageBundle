@@ -16,6 +16,7 @@ namespace Sonata\PageBundle\Cache;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 use Sonata\Cache\Invalidation\Recorder;
 use Sonata\CacheBundle\Adapter\VarnishCache;
 use Sonata\PageBundle\CmsManager\CmsManagerInterface;
@@ -73,7 +74,7 @@ class BlockEsiCache extends VarnishCache
         $this->recorder = $recorder;
     }
 
-    public function get(array $keys): CacheElement
+    public function get(array $keys): CacheElementInterface
     {
         $this->validateKeys($keys);
 
@@ -84,7 +85,7 @@ class BlockEsiCache extends VarnishCache
         return new CacheElement($keys, new Response($content));
     }
 
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElement
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $this->validateKeys($keys);
 

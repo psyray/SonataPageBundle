@@ -16,6 +16,7 @@ namespace Sonata\PageBundle\Cache;
 use Sonata\BlockBundle\Block\BlockContextManagerInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 use Sonata\CacheBundle\Adapter\SsiCache;
 use Sonata\PageBundle\CmsManager\CmsManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +61,7 @@ class BlockSsiCache extends SsiCache
         $this->contextManager = $contextManager;
     }
 
-    public function get(array $keys): CacheElement
+    public function get(array $keys): CacheElementInterface
     {
         $this->validateKeys($keys);
 
@@ -71,7 +72,7 @@ class BlockSsiCache extends SsiCache
         return new CacheElement($keys, new Response($content));
     }
 
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElement
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $this->validateKeys($keys);
 
